@@ -109,12 +109,6 @@
             50% { transform: scale(1.05); }
         }
 
-        .screen .subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            font-size: 0.9em;
-        }
-
         .developer-badge {
             background: linear-gradient(135deg, #ff0000, #cc0000);
             color: white;
@@ -159,12 +153,6 @@
             border-color: #667eea;
             transform: scale(1.15);
             box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-            animation: bounce 0.5s;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
         }
 
         .input-group {
@@ -183,14 +171,10 @@
             outline: none;
             background: var(--input-bg);
             color: var(--text);
-            transition: all 0.3s;
         }
 
         .input-group input:focus { border-color: #667eea; box-shadow: 0 0 15px rgba(102, 126, 234, 0.3); }
-        .input-group input.error {
-            border-color: #f44336;
-            animation: shake 0.5s;
-        }
+        .input-group input.error { border-color: #f44336; animation: shake 0.5s; }
 
         .password-toggle {
             position: absolute;
@@ -221,7 +205,7 @@
 
         .error-message { color: #f44336; background: rgba(244, 67, 54, 0.1); }
         .success-message { color: #4caf50; background: rgba(76, 175, 80, 0.1); }
-        .error-message.show, .success-message.show { display: block; animation: fadeIn 0.3s; }
+        .error-message.show, .success-message.show { display: block; }
 
         .screen button {
             width: 100%;
@@ -238,14 +222,9 @@
             transition: all 0.3s;
         }
 
-        .screen button:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+        .screen button:hover { transform: translateY(-3px); }
         .screen button:active { transform: scale(0.95); }
-
-        .screen button.secondary {
-            background: transparent;
-            border: 2px solid var(--border);
-            color: var(--text);
-        }
+        .screen button.secondary { background: transparent; border: 2px solid var(--border); color: var(--text); }
 
         .char-count {
             color: var(--text-secondary);
@@ -281,27 +260,15 @@
             font-size: 0.7em;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-            letter-spacing: 1px;
             animation: glow 2s infinite;
         }
 
-        .tabs {
-            display: flex;
-            background: var(--bg);
-            border-bottom: 2px solid var(--border);
-        }
-
+        .tabs { display: flex; background: var(--bg); border-bottom: 2px solid var(--border); }
         .tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--tab-inactive);
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
+            flex: 1; padding: 15px; text-align: center; cursor: pointer;
+            font-weight: bold; color: var(--tab-inactive);
+            border-bottom: 3px solid transparent; transition: all 0.3s;
         }
-
         .tab:hover { color: var(--tab-active); }
         .tab.active { color: var(--tab-active); border-bottom-color: var(--tab-active); }
 
@@ -309,24 +276,14 @@
         .tab-content.active { display: flex; }
 
         .messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background: var(--bg-secondary);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            flex: 1; overflow-y: auto; padding: 20px;
+            background: var(--bg-secondary); display: flex; flex-direction: column; gap: 10px;
         }
 
         .message {
-            max-width: 70%;
-            padding: 12px 18px;
-            border-radius: 20px;
-            word-wrap: break-word;
-            animation: messagePop 0.4s ease-out;
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
+            max-width: 70%; padding: 12px 18px; border-radius: 20px;
+            word-wrap: break-word; animation: messagePop 0.4s ease-out;
+            display: flex; gap: 10px; align-items: flex-start;
         }
 
         @keyframes messagePop {
@@ -336,192 +293,91 @@
         }
 
         .message.sent {
-            align-self: flex-end;
-            background: var(--message-sent);
-            color: white;
-            border-bottom-right-radius: 5px;
-            flex-direction: row-reverse;
+            align-self: flex-end; background: var(--message-sent);
+            color: white; border-bottom-right-radius: 5px; flex-direction: row-reverse;
         }
 
         .message.received {
-            align-self: flex-start;
-            background: var(--message-received);
-            color: var(--text);
-            border-bottom-left-radius: 5px;
+            align-self: flex-start; background: var(--message-received);
+            color: var(--text); border-bottom-left-radius: 5px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .message.admin-message {
-            border: 2px solid #ff0000;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-            animation: adminGlow 2s infinite;
-        }
-
-        @keyframes adminGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); }
+            border: 2px solid #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
         }
 
         .msg-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(102, 126, 234, 0.2);
-            flex-shrink: 0;
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(102, 126, 234, 0.2); flex-shrink: 0;
         }
 
         .input-area {
-            display: flex;
-            padding: 15px;
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            gap: 10px;
+            display: flex; padding: 15px; background: var(--bg);
+            border-top: 1px solid var(--border); gap: 10px;
         }
 
         .input-area input {
-            flex: 1;
-            padding: 12px 20px;
-            border: 2px solid var(--border);
-            border-radius: 50px;
-            outline: none;
-            background: var(--input-bg);
-            color: var(--text);
+            flex: 1; padding: 12px 20px; border: 2px solid var(--border);
+            border-radius: 50px; outline: none; background: var(--input-bg); color: var(--text);
         }
 
         .input-area button {
-            padding: 12px 24px;
-            border: none;
-            background: var(--button-bg);
-            color: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
+            padding: 12px 24px; border: none; background: var(--button-bg);
+            color: white; border-radius: 50px; cursor: pointer; font-weight: bold;
         }
 
         .input-area button:hover { transform: scale(1.05); }
-        .input-area button:active { transform: scale(0.9); }
 
-        .bank-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background: var(--bg-secondary);
-        }
+        .bank-container { flex: 1; overflow-y: auto; padding: 20px; background: var(--bg-secondary); }
 
         .balance-card {
-            background: var(--card-bg);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 30px;
+            background: var(--card-bg); color: white; padding: 30px;
+            border-radius: 20px; margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s;
         }
-
-        .balance-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4); }
 
         .balance-card.admin-card {
-            background: linear-gradient(135deg, #1a1a1a, #333333);
-            border: 2px solid #ff0000;
+            background: linear-gradient(135deg, #1a1a1a, #333333); border: 2px solid #ff0000;
         }
 
-        .balance-amount {
-            font-size: 3em;
-            font-weight: bold;
-            margin: 10px 0;
-            animation: countUp 0.5s;
-        }
-
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .balance-amount { font-size: 3em; font-weight: bold; margin: 10px 0; }
 
         .transfer-section {
-            background: var(--bg);
-            padding: 25px;
-            border-radius: 15px;
+            background: var(--bg); padding: 25px; border-radius: 15px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-size: 1em;
-            background: var(--input-bg);
-            color: var(--text);
-            outline: none;
+            width: 100%; padding: 12px 15px; border: 2px solid var(--border);
+            border-radius: 10px; font-size: 1em; background: var(--input-bg); color: var(--text); outline: none;
         }
 
         .transfer-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            background: var(--button-bg);
-            color: white;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
+            width: 100%; padding: 15px; border: none; background: var(--button-bg);
+            color: white; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer;
         }
-
-        .transfer-btn:hover { transform: translateY(-2px); }
-        .transfer-btn:active { transform: scale(0.95); }
 
         .transaction-item {
-            background: var(--bg);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            animation: slideIn 0.3s;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+            background: var(--bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
         }
 
         .admin-panel {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border: 2px solid #ff0000;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            color: white;
+            border: 2px solid #ff0000; padding: 20px; border-radius: 15px;
+            margin-bottom: 20px; color: white;
         }
 
         .admin-btn {
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid #ff0000;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
+            background: rgba(255, 0, 0, 0.2); border: 1px solid #ff0000;
+            color: white; padding: 10px 15px; border-radius: 10px; cursor: pointer;
         }
 
-        .admin-btn:hover { background: rgba(255, 0, 0, 0.4); transform: scale(1.05); }
-
         .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--success);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            z-index: 9999;
+            position: fixed; top: 20px; right: 20px; background: #4caf50;
+            color: white; padding: 15px 25px; border-radius: 10px; z-index: 9999;
             animation: slideDown 0.5s, fadeOut 0.5s 2.5s forwards;
         }
 
@@ -530,9 +386,7 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes fadeOut {
-            to { opacity: 0; transform: translateY(-20px); }
-        }
+        @keyframes fadeOut { to { opacity: 0; transform: translateY(-20px); } }
 
         @media (max-width: 500px) {
             .container { height: 100vh; max-width: 100%; }
@@ -545,30 +399,29 @@
     <div class="container">
         <div class="screen login-screen" id="loginScreen">
             <h1>🚀 Golubat Chat</h1>
-            <p class="subtitle">Войдите в аккаунт</p>
+            <p style="color: #888; margin-bottom: 10px;">Войдите в аккаунт</p>
             <div class="developer-badge">👑 Разработчик: MrP1sple</div>
-            <div class="input-group"><input type="text" id="loginNickname" placeholder="Никнейм" maxlength="20" autocomplete="off" oninput="updateCharCount('loginNickname', 'loginCharCount')"></div>
+            <div class="input-group"><input type="text" id="loginNickname" placeholder="Никнейм" maxlength="20" autocomplete="off"></div>
             <div class="char-count" id="loginCharCount">0/20</div>
-            <div class="input-group"><input type="password" id="loginPassword" placeholder="Пароль" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePassword('loginPassword')">👁️</span></div>
+            <div class="input-group"><input type="password" id="loginPassword" placeholder="Пароль" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePass('loginPassword')">👁️</span></div>
             <div class="error-message" id="loginError"></div>
-            <button onclick="login()">Войти 🔑</button>
-            <button class="secondary" onclick="showRegister()">Создать аккаунт ✨</button>
+            <button onclick="doLogin()">Войти 🔑</button>
+            <button class="secondary" onclick="showReg()">Создать аккаунт ✨</button>
         </div>
 
         <div class="screen register-screen" id="registerScreen">
             <h1>✨ Регистрация</h1>
-            <div class="avatar-selection" id="avatarSelection">
+            <div class="avatar-selection" id="avatarSel">
                 <div class="avatar-option selected" data-avatar="😎">😎</div><div class="avatar-option" data-avatar="🦊">🦊</div><div class="avatar-option" data-avatar="🐱">🐱</div><div class="avatar-option" data-avatar="🐶">🐶</div><div class="avatar-option" data-avatar="🦁">🦁</div><div class="avatar-option" data-avatar="🐼">🐼</div><div class="avatar-option" data-avatar="👽">👽</div><div class="avatar-option" data-avatar="🤖">🤖</div>
             </div>
-            <div class="input-group"><input type="text" id="regNickname" placeholder="Никнейм" maxlength="20" autocomplete="off" oninput="updateCharCount('regNickname', 'regCharCount')"></div>
+            <div class="input-group"><input type="text" id="regNickname" placeholder="Никнейм" maxlength="20" autocomplete="off"></div>
             <div class="char-count" id="regCharCount">0/20</div>
-            <div class="input-group"><input type="password" id="regPassword" placeholder="Пароль (мин. 5 цифр)" maxlength="20" autocomplete="off" oninput="checkPasswordStrength()"><span class="password-toggle" onclick="togglePassword('regPassword')">👁️</span></div>
-            <div class="password-strength" id="passwordStrength" style="height:4px;border-radius:2px;max-width:300px;width:100%;"></div>
-            <div class="input-group"><input type="password" id="regPasswordConfirm" placeholder="Повторите пароль" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePassword('regPasswordConfirm')">👁️</span></div>
+            <div class="input-group"><input type="password" id="regPassword" placeholder="Пароль (мин. 5 цифр)" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePass('regPassword')">👁️</span></div>
+            <div class="input-group"><input type="password" id="regPasswordConfirm" placeholder="Повторите пароль" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePass('regPasswordConfirm')">👁️</span></div>
             <div class="error-message" id="regError"></div>
             <div class="success-message" id="regSuccess"></div>
-            <button onclick="register()">Зарегистрироваться 🎉</button>
-            <button class="secondary" onclick="showLogin()">Уже есть аккаунт? Войти</button>
+            <button onclick="doRegister()">Зарегистрироваться 🎉</button>
+            <button class="secondary" onclick="showLoginScreen()">Уже есть аккаунт? Войти</button>
         </div>
 
         <div class="screen main-screen" id="mainScreen">
@@ -578,8 +431,8 @@
                     <div><span id="userNickname">User</span><span class="admin-prefix" id="adminPrefix" style="display:none;">Г.Л АДМИН</span></div>
                 </div>
                 <div style="display:flex;gap:10px;">
-                    <button onclick="toggleTheme()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:20px;cursor:pointer;">🌓</button>
-                    <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:20px;cursor:pointer;">Выйти</button>
+                    <button onclick="toggleDark()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:20px;cursor:pointer;">🌓</button>
+                    <button onclick="doLogout()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:20px;cursor:pointer;">Выйти</button>
                 </div>
             </div>
             <div class="tabs">
@@ -589,27 +442,44 @@
             <div class="tab-content active" id="chatTab">
                 <div class="messages" id="messagesContainer"></div>
                 <div class="input-area">
-                    <input type="text" id="messageInput" placeholder="Сообщение..." maxlength="500" onkeypress="if(event.key==='Enter')sendMessage()" autocomplete="off">
-                    <button onclick="sendMessage()">Отправить</button>
+                    <input type="text" id="messageInput" placeholder="Сообщение..." maxlength="500" onkeypress="if(event.key==='Enter')doSend()" autocomplete="off">
+                    <button onclick="doSend()">Отправить</button>
                 </div>
             </div>
             <div class="tab-content" id="bankTab">
                 <div class="bank-container">
-                    <div class="balance-card" id="balanceCard"><div class="balance-label">💰 Ваш баланс</div><div class="balance-amount" id="balanceDisplay">500 ⭐</div><div style="display:none;background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:20px;font-size:0.8em;margin-top:10px;display:inline-block;" id="infiniteBadge">♾️ Бесконечный баланс</div></div>
-                    <div class="admin-panel" id="adminPanel" style="display:none;"><h3>🔧 Админ панель</h3><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="admin-btn" onclick="resetAllBalances()">Сброс балансов</button><button class="admin-btn" onclick="announceInChat()">Объявление</button><button class="admin-btn" onclick="giveBonusToAll()">Бонус всем (100⭐)</button></div></div>
-                    <div class="transfer-section"><h3>📤 Перевод средств</h3><div class="form-group"><label>Кому</label><input type="text" id="transferRecipient" placeholder="Никнейм" autocomplete="off"></div><div class="form-group"><label>Сумма</label><input type="number" id="transferAmount" placeholder="Сумма" min="1"></div><div class="error-message" id="transferError"></div><div class="success-message" id="transferSuccess"></div><button class="transfer-btn" onclick="makeTransfer()">Отправить 💸</button></div>
-                    <div class="transaction-history" id="transactionHistory"><h3>📋 История операций</h3></div>
+                    <div class="balance-card" id="balanceCard">
+                        <div class="balance-label" style="font-size:0.9em;opacity:0.8;">💰 Ваш баланс</div>
+                        <div class="balance-amount" id="balanceDisplay">500 ⭐</div>
+                        <div id="infiniteBadge" style="display:none;background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:20px;font-size:0.8em;margin-top:10px;">♾️ Бесконечный баланс</div>
+                    </div>
+                    <div class="admin-panel" id="adminPanel" style="display:none;">
+                        <h3>🔧 Админ панель</h3>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                            <button class="admin-btn" onclick="resetAll()">Сброс балансов</button>
+                            <button class="admin-btn" onclick="doAnnounce()">Объявление</button>
+                            <button class="admin-btn" onclick="giveBonus()">Бонус всем (100⭐)</button>
+                        </div>
+                    </div>
+                    <div class="transfer-section">
+                        <h3>📤 Перевод средств</h3>
+                        <div class="form-group"><label>Кому</label><input type="text" id="transferRecipient" placeholder="Никнейм" autocomplete="off"></div>
+                        <div class="form-group"><label>Сумма</label><input type="number" id="transferAmount" placeholder="Сумма" min="1"></div>
+                        <div class="error-message" id="transferError"></div>
+                        <div class="success-message" id="transferSuccess"></div>
+                        <button class="transfer-btn" onclick="doTransfer()">Отправить 💸</button>
+                    </div>
+                    <div style="margin-top:30px;"><h3>📋 История операций</h3></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
         const SUPABASE_URL = 'https://nlrrunpqewtcealfslf.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_aNX07I3_LNzNRx9PoRYSIQ_hYw0Jrd6';
-        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const ADMIN_NICKNAME = 'MrP1sple';
         const ADMIN_PASSWORD = 'admin12345';
@@ -617,192 +487,198 @@
 
         let currentUser = null, currentAvatar = '😎', isAdmin = false, accounts = {}, userBalances = {};
 
-        // Звуки (создаются программно)
         function playSound(type) {
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                gain.gain.value = 0.1;
-                if (type === 'send') { osc.frequency.value = 800; osc.type = 'sine'; gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15); osc.start(); osc.stop(ctx.currentTime + 0.15); }
-                else if (type === 'receive') { osc.frequency.value = 500; osc.type = 'triangle'; gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2); osc.start(); osc.stop(ctx.currentTime + 0.2); }
-                else if (type === 'transfer') { osc.frequency.value = 1000; osc.type = 'sine'; gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3); osc.start(); osc.stop(ctx.currentTime + 0.3); }
-                else if (type === 'login') { osc.frequency.value = 600; osc.type = 'sine'; gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4); osc.start(); osc.stop(ctx.currentTime + 0.4); }
-            } catch(e) {}
+                osc.connect(gain); gain.connect(ctx.destination); gain.gain.value = 0.1;
+                if(type==='send'){osc.frequency.value=800;osc.type='sine';osc.start();osc.stop(ctx.currentTime+0.15);}
+                else if(type==='receive'){osc.frequency.value=500;osc.type='triangle';osc.start();osc.stop(ctx.currentTime+0.2);}
+                else if(type==='login'){osc.frequency.value=600;osc.type='sine';osc.start();osc.stop(ctx.currentTime+0.4);}
+            }catch(e){}
         }
 
-        function showNotification(text) {
+        function notify(text) {
             const n = document.createElement('div');
-            n.className = 'notification';
-            n.textContent = text;
+            n.style.cssText='position:fixed;top:20px;right:20px;background:#4caf50;color:white;padding:15px 25px;border-radius:10px;z-index:9999;animation:slideDown 0.5s,fadeOut 0.5s 2.5s forwards;';
+            n.textContent=text;
             document.body.appendChild(n);
-            setTimeout(() => n.remove(), 3000);
+            setTimeout(()=>n.remove(),3000);
         }
 
-        // Глобальные функции
-        window.togglePassword = (id) => { const i = document.getElementById(id); i.type = i.type === 'password' ? 'text' : 'password'; };
-        window.updateCharCount = (inp, cnt) => { document.getElementById(cnt).textContent = document.getElementById(inp).value.length + '/20'; };
-        window.showRegister = () => { document.getElementById('loginScreen').style.display='none'; document.getElementById('registerScreen').style.display='flex'; };
-        window.showLogin = () => { document.getElementById('registerScreen').style.display='none'; document.getElementById('loginScreen').style.display='flex'; };
-        window.toggleTheme = () => { document.body.classList.toggle('dark-theme'); localStorage.setItem('theme', document.body.classList.contains('dark-theme')?'dark':'light'); };
-        window.switchTab = (t) => {
-            document.querySelectorAll('.tab').forEach(tb => tb.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        function togglePass(id){ const i=document.getElementById(id); i.type=i.type==='password'?'text':'password'; }
+        function showReg(){ document.getElementById('loginScreen').style.display='none'; document.getElementById('registerScreen').style.display='flex'; }
+        function showLoginScreen(){ document.getElementById('registerScreen').style.display='none'; document.getElementById('loginScreen').style.display='flex'; }
+        function toggleDark(){ document.body.classList.toggle('dark-theme'); localStorage.setItem('theme',document.body.classList.contains('dark-theme')?'dark':'light'); }
+
+        function switchTab(t){
+            document.querySelectorAll('.tab').forEach(tb=>tb.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
             document.querySelector(`[data-tab="${t}"]`).classList.add('active');
             document.getElementById(t+'Tab').classList.add('active');
-            if(t==='bank') updateBalanceDisplay();
-        };
+            if(t==='bank') updateBalance();
+        }
 
-        window.register = () => {
-            const nick = document.getElementById('regNickname').value.trim();
-            const pass = document.getElementById('regPassword').value;
-            const pass2 = document.getElementById('regPasswordConfirm').value;
-            const err = document.getElementById('regError');
-            err.classList.remove('show');
-            if(!nick) return showErr('Введите никнейм!');
-            if(nick.length<2 || nick.length>20) return showErr('Никнейм от 2 до 20 символов!');
-            if(bannedWords.some(w => nick.toLowerCase().includes(w))) return showErr('Запрещённый никнейм!');
-            if(nick===ADMIN_NICKNAME) return showErr('Никнейм зарезервирован!');
-            if(accounts[nick]) return showErr('Никнейм занят!');
-            if((pass.match(/\d/g)||[]).length<5) return showErr('Минимум 5 цифр в пароле!');
-            if(pass!==pass2) return showErr('Пароли не совпадают!');
-            accounts[nick] = {password:pass, avatar:currentAvatar};
-            localStorage.setItem('accounts', JSON.stringify(accounts));
+        function doRegister(){
+            const nick=document.getElementById('regNickname').value.trim();
+            const pass=document.getElementById('regPassword').value;
+            const pass2=document.getElementById('regPasswordConfirm').value;
+            const err=document.getElementById('regError');
+            const suc=document.getElementById('regSuccess');
+            err.classList.remove('show'); suc.classList.remove('show');
+            if(!nick){err.textContent='❌ Введите никнейм!';err.classList.add('show');return;}
+            if(nick.length<2||nick.length>20){err.textContent='❌ Никнейм от 2 до 20 символов!';err.classList.add('show');return;}
+            if(bannedWords.some(w=>nick.toLowerCase().includes(w))){err.textContent='❌ Запрещённый никнейм!';err.classList.add('show');return;}
+            if(nick===ADMIN_NICKNAME){err.textContent='❌ Никнейм зарезервирован!';err.classList.add('show');return;}
+            if(accounts[nick]){err.textContent='❌ Никнейм занят!';err.classList.add('show');return;}
+            if((pass.match(/\d/g)||[]).length<5){err.textContent='❌ Минимум 5 цифр в пароле!';err.classList.add('show');return;}
+            if(pass!==pass2){err.textContent='❌ Пароли не совпадают!';err.classList.add('show');return;}
+            accounts[nick]={password:pass, avatar:currentAvatar};
+            localStorage.setItem('accounts',JSON.stringify(accounts));
             userBalances[nick]=500;
-            localStorage.setItem('userBalances', JSON.stringify(userBalances));
-            document.getElementById('regSuccess').classList.add('show');
-            document.getElementById('regSuccess').textContent='✅ Аккаунт создан!';
+            localStorage.setItem('userBalances',JSON.stringify(userBalances));
+            suc.textContent='✅ Аккаунт создан!';
+            suc.classList.add('show');
             playSound('login');
-            setTimeout(()=>{ window.showLogin(); document.getElementById('loginNickname').value=nick; },1500);
-            function showErr(m){ err.textContent='❌ '+m; err.classList.add('show'); }
-        };
+            setTimeout(()=>{showLoginScreen();document.getElementById('loginNickname').value=nick;},1500);
+        }
 
-        window.login = () => {
-            const nick = document.getElementById('loginNickname').value.trim();
-            const pass = document.getElementById('loginPassword').value;
-            const err = document.getElementById('loginError');
+        function doLogin(){
+            const nick=document.getElementById('loginNickname').value.trim();
+            const pass=document.getElementById('loginPassword').value;
+            const err=document.getElementById('loginError');
             err.classList.remove('show');
-            if(nick===ADMIN_NICKNAME && pass===ADMIN_PASSWORD) { currentUser=ADMIN_NICKNAME; currentAvatar='👑'; isAdmin=true; }
-            else if(accounts[nick] && accounts[nick].password===pass) { currentUser=nick; currentAvatar=accounts[nick].avatar||'😎'; isAdmin=false; }
-            else { err.textContent='❌ Неверный ник или пароль!'; err.classList.add('show'); return; }
+            if(!nick){err.textContent='❌ Введите никнейм!';err.classList.add('show');return;}
+            if(nick===ADMIN_NICKNAME && pass===ADMIN_PASSWORD){currentUser=ADMIN_NICKNAME;currentAvatar='👑';isAdmin=true;}
+            else if(accounts[nick] && accounts[nick].password===pass){currentUser=nick;currentAvatar=accounts[nick].avatar||'😎';isAdmin=false;}
+            else{err.textContent='❌ Неверный ник или пароль!';err.classList.add('show');return;}
             localStorage.setItem('nickname',currentUser);
             localStorage.setItem('password',pass);
-            if(!userBalances[currentUser]) { userBalances[currentUser]=isAdmin?Infinity:500; localStorage.setItem('userBalances',JSON.stringify(userBalances)); }
+            if(!userBalances[currentUser]){userBalances[currentUser]=isAdmin?Infinity:500;localStorage.setItem('userBalances',JSON.stringify(userBalances));}
             playSound('login');
-            showNotification('✅ Вход выполнен!');
-            showMainScreen();
-        };
+            notify('✅ Вход выполнен!');
+            showMain();
+        }
 
-        window.sendMessage = async () => {
-            const input = document.getElementById('messageInput');
-            const text = input.value.trim();
-            if(!text) return;
-            await supabase.from('messages').insert([{nickname:currentUser, avatar:currentAvatar, text:text, is_admin:isAdmin}]);
-            playSound('send');
-            input.value='';
-            input.focus();
-        };
-
-        window.makeTransfer = () => {
-            const rec = document.getElementById('transferRecipient').value.trim();
-            const amt = parseInt(document.getElementById('transferAmount').value);
-            const err = document.getElementById('transferError');
-            const suc = document.getElementById('transferSuccess');
-            err.classList.remove('show'); suc.classList.remove('show');
-            if(!rec) return showBE('Введите никнейм!');
-            if(rec===currentUser) return showBE('Нельзя себе!');
-            if(!amt||amt<=0) return showBE('Некорректная сумма!');
-            if(!isAdmin && amt>(userBalances[currentUser]||0)) return showBE('Недостаточно средств!');
-            if(!isAdmin) userBalances[currentUser]-=amt;
-            userBalances[rec]=(userBalances[rec]||0)+amt;
-            localStorage.setItem('userBalances',JSON.stringify(userBalances));
-            suc.textContent=`✅ Отправлено ${amt}⭐ для ${rec}`;
-            suc.classList.add('show');
-            playSound('transfer');
-            showNotification(`💰 Отправлено ${amt}⭐`);
-            document.getElementById('transferRecipient').value='';
-            document.getElementById('transferAmount').value='';
-            updateBalanceDisplay();
-            setTimeout(()=>suc.classList.remove('show'),3000);
-            function showBE(m){ err.textContent='❌ '+m; err.classList.add('show'); setTimeout(()=>err.classList.remove('show'),3000); }
-        };
-
-        window.resetAllBalances = () => { if(!isAdmin) return; for(let u in userBalances){ if(u!==ADMIN_NICKNAME) userBalances[u]=500; } localStorage.setItem('userBalances',JSON.stringify(userBalances)); updateBalanceDisplay(); showNotification('💰 Балансы сброшены'); };
-        window.announceInChat = async () => { if(!isAdmin) return; const a = prompt('Объявление:'); if(a) { await supabase.from('messages').insert([{nickname:'📢',avatar:'📢',text:a,is_admin:true}]); playSound('send'); } };
-        window.giveBonusToAll = () => { if(!isAdmin) return; for(let u in userBalances){ if(u!==ADMIN_NICKNAME) userBalances[u]+=100; } localStorage.setItem('userBalances',JSON.stringify(userBalances)); updateBalanceDisplay(); showNotification('🎁 Бонус 100⭐ всем!'); };
-
-        window.logout = () => { localStorage.removeItem('nickname'); localStorage.removeItem('password'); currentUser=null; isAdmin=false; document.getElementById('mainScreen').style.display='none'; document.getElementById('loginScreen').style.display='flex'; };
-
-        function showMainScreen() {
+        function showMain(){
             document.getElementById('loginScreen').style.display='none';
             document.getElementById('registerScreen').style.display='none';
             document.getElementById('mainScreen').style.display='flex';
             document.getElementById('userAvatar').textContent=currentAvatar;
             document.getElementById('userNickname').textContent=currentUser;
-            const ap = document.getElementById('adminPrefix');
-            if(isAdmin) { ap.style.display='block'; document.getElementById('userNickname').style.color='#ff0000'; }
-            else { ap.style.display='none'; document.getElementById('userNickname').style.color=''; }
+            const ap=document.getElementById('adminPrefix');
+            if(isAdmin){ap.style.display='block';document.getElementById('userNickname').style.color='#ff0000';}
+            else{ap.style.display='none';document.getElementById('userNickname').style.color='';}
             document.getElementById('adminPanel').style.display=isAdmin?'block':'none';
-            document.getElementById('messagesContainer').innerHTML='';
             document.getElementById('infiniteBadge').style.display=isAdmin?'inline-block':'none';
-            updateBalanceDisplay();
-            loadMessages();
-            setupRealtime();
+            document.getElementById('messagesContainer').innerHTML='';
+            updateBalance();
+            loadMsgs();
+            setupRT();
         }
 
-        function displayMessage(msg) {
-            const container = document.getElementById('messagesContainer');
-            if(document.querySelector(`[data-id="${msg.id}"]`)) return;
-            const isSent = msg.nickname === currentUser;
-            const div = document.createElement('div');
-            div.className = `message ${isSent?'sent':'received'}`;
-            div.setAttribute('data-id', msg.id);
-            if(msg.is_admin) div.classList.add('admin-message');
-            const time = new Date(msg.created_at).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-            const sender = msg.is_admin ? `<span style="color:#ff0000;">${msg.nickname} <span style="font-size:0.75em;">[Г.Л АДМИН]</span></span>` : msg.nickname;
-            div.innerHTML = `<div class="msg-avatar">${msg.avatar||'👤'}</div><div class="msg-content"><div class="sender" style="font-weight:bold;margin-bottom:4px;">${sender}</div>${msg.text}<div style="font-size:0.7em;opacity:0.7;text-align:right;margin-top:5px;">${time}</div></div>`;
+        async function doSend(){
+            const input=document.getElementById('messageInput');
+            const text=input.value.trim();
+            if(!text)return;
+            await supabase.from('messages').insert([{nickname:currentUser,avatar:currentAvatar,text:text,is_admin:isAdmin}]);
+            playSound('send');
+            input.value='';
+            input.focus();
+        }
+
+        function doTransfer(){
+            const rec=document.getElementById('transferRecipient').value.trim();
+            const amt=parseInt(document.getElementById('transferAmount').value);
+            const err=document.getElementById('transferError');
+            const suc=document.getElementById('transferSuccess');
+            err.classList.remove('show');suc.classList.remove('show');
+            if(!rec){err.textContent='❌ Введите никнейм!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
+            if(rec===currentUser){err.textContent='❌ Нельзя себе!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
+            if(!amt||amt<=0){err.textContent='❌ Некорректная сумма!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
+            if(!isAdmin && amt>(userBalances[currentUser]||0)){err.textContent='❌ Недостаточно средств!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
+            if(!isAdmin)userBalances[currentUser]-=amt;
+            userBalances[rec]=(userBalances[rec]||0)+amt;
+            localStorage.setItem('userBalances',JSON.stringify(userBalances));
+            suc.textContent=`✅ Отправлено ${amt}⭐ для ${rec}`;
+            suc.classList.add('show');
+            playSound('send');
+            notify(`💰 Отправлено ${amt}⭐`);
+            document.getElementById('transferRecipient').value='';
+            document.getElementById('transferAmount').value='';
+            updateBalance();
+            setTimeout(()=>suc.classList.remove('show'),3000);
+        }
+
+        function resetAll(){if(!isAdmin)return;for(let u in userBalances){if(u!==ADMIN_NICKNAME)userBalances[u]=500;}localStorage.setItem('userBalances',JSON.stringify(userBalances));updateBalance();notify('💰 Балансы сброшены');}
+        function doAnnounce(){if(!isAdmin)return;const a=prompt('Объявление:');if(a){supabase.from('messages').insert([{nickname:'📢',avatar:'📢',text:a,is_admin:true}]);}}
+        function giveBonus(){if(!isAdmin)return;for(let u in userBalances){if(u!==ADMIN_NICKNAME)userBalances[u]+=100;}localStorage.setItem('userBalances',JSON.stringify(userBalances));updateBalance();notify('🎁 Бонус 100⭐ всем!');}
+
+        function doLogout(){
+            localStorage.removeItem('nickname');localStorage.removeItem('password');
+            currentUser=null;isAdmin=false;
+            document.getElementById('mainScreen').style.display='none';
+            document.getElementById('loginScreen').style.display='flex';
+        }
+
+        function displayMsg(msg){
+            const container=document.getElementById('messagesContainer');
+            if(document.querySelector(`[data-id="${msg.id}"]`))return;
+            const isSent=msg.nickname===currentUser;
+            const div=document.createElement('div');
+            div.className='message '+(isSent?'sent':'received');
+            div.setAttribute('data-id',msg.id);
+            if(msg.is_admin)div.classList.add('admin-message');
+            const time=new Date(msg.created_at).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+            const sender=msg.is_admin?`<span style="color:#ff0000;">${msg.nickname} <span style="font-size:0.75em;">[Г.Л АДМИН]</span></span>`:msg.nickname;
+            div.innerHTML=`<div class="msg-avatar">${msg.avatar||'👤'}</div><div><div style="font-weight:bold;margin-bottom:4px;">${sender}</div>${msg.text}<div style="font-size:0.7em;opacity:0.7;text-align:right;margin-top:5px;">${time}</div></div>`;
             container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-            if(!isSent && msg.nickname !== '📢') playSound('receive');
+            container.scrollTop=container.scrollHeight;
+            if(!isSent&&msg.nickname!=='📢')playSound('receive');
         }
 
-        async function loadMessages() {
-            const { data } = await supabase.from('messages').select('*').order('created_at',{ascending:true}).limit(100);
-            if(data) data.forEach(m => displayMessage(m));
+        async function loadMsgs(){
+            const{data}=await supabase.from('messages').select('*').order('created_at',{ascending:true}).limit(100);
+            if(data)data.forEach(m=>displayMsg(m));
         }
 
-        function setupRealtime() {
+        function setupRT(){
             supabase.channel('public:messages')
-                .on('postgres_changes', {event:'INSERT', schema:'public', table:'messages'}, (payload) => displayMessage(payload.new))
+                .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},(payload)=>displayMsg(payload.new))
                 .subscribe();
         }
 
-        function updateBalanceDisplay() {
-            document.getElementById('balanceDisplay').textContent = isAdmin ? '♾️ ⭐' : `${userBalances[currentUser]||0} ⭐`;
-            consдщщщщщщщщщt card = document.getElementById('balanceCard');
-            if(isAdmin) card.classList.add('admin-card'); else card.classList.remove('admin-card');
-            document.getElementById('infiniteBadge').style.display = isAdmin ? 'inline-block' : 'none';
+        function updateBalance(){
+            document.getElementById('balanceDisplay').textContent=isAdmin?'♾️ ⭐':`${userBalances[currentUser]||0} ⭐`;
+            const card=document.getElementById('balanceCard');
+            if(isAdmin)card.classList.add('admin-card');else card.classList.remove('admin-card');
+            document.getElementById('infiniteBadge').style.display=isAdmin?'inline-block':'none';
         }
 
-        window.onload = () => {
-            if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark-theme');
-            const sa = localStorage.getItem('accounts');
-            accounts = sa ? JSON.parse(sa) : {};
-            if(!accounts[ADMIN_NICKNAME]) { accounts[ADMIN_NICKNAME]={password:ADMIN_PASSWORD, avatar:'👑'}; localStorage.setItem('accounts',JSON.stringify(accounts)); }
-            const sb = localStorage.getItem('userBalances');
-            if(sb) userBalances = JSON.parse(sb);
-            const nn = localStorage.getItem('nickname');
-            const pp = localStorage.getItem('password');
-            if(nn && pp && accounts[nn] && accounts[nn].password===pp) {
-                currentUser=nn; currentAvatar=accounts[nn].avatar||'😎'; isAdmin=(nn===ADMIN_NICKNAME);
-                showMainScreen();
+        window.onload=()=>{
+            if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark-theme');
+            const sa=localStorage.getItem('accounts');
+            accounts=sa?JSON.parse(sa):{};
+            if(!accounts[ADMIN_NICKNAME]){accounts[ADMIN_NICKNAME]={password:ADMIN_PASSWORD,avatar:'👑'};localStorage.setItem('accounts',JSON.stringify(accounts));}
+            const sb=localStorage.getItem('userBalances');
+            if(sb)userBalances=JSON.parse(sb);
+            const nn=localStorage.getItem('nickname');
+            const pp=localStorage.getItem('password');
+            if(nn&&pp&&accounts[nn]&&accounts[nn].password===pp){
+                currentUser=nn;currentAvatar=accounts[nn].avatar||'😎';isAdmin=(nn===ADMIN_NICKNAME);
+                showMain();
             }
-            document.querySelectorAll('.avatar-option').forEach(o => o.addEventListener('click', function(){
-                document.querySelectorAll('.avatar-option').forEach(x => x.classList.remove('selected'));
-                this.classList.add('selected'); currentAvatar=this.dataset.avatar;
+            document.querySelectorAll('.avatar-option').forEach(o=>o.addEventListener('click',function(){
+                document.querySelectorAll('.avatar-option').forEach(x=>x.classList.remove('selected'));
+                this.classList.add('selected');currentAvatar=this.dataset.avatar;
             }));
+            document.getElementById('loginNickname').addEventListener('input',()=>{
+                document.getElementById('loginCharCount').textContent=document.getElementById('loginNickname').value.length+'/20';
+            });
+            document.getElementById('regNickname').addEventListener('input',()=>{
+                document.getElementById('regCharCount').textContent=document.getElementById('regNickname').value.length+'/20';
+            });
         };
     </script>
 </body>
