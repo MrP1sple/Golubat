@@ -15,461 +15,210 @@
             --message-received: #ffffff;
             --header-bg: linear-gradient(135deg, #667eea, #764ba2);
             --input-bg: #ffffff;
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             --button-bg: linear-gradient(135deg, #667eea, #764ba2);
             --tab-active: #667eea;
             --tab-inactive: #ccc;
             --card-bg: linear-gradient(135deg, #667eea, #764ba2);
-            --success: #4caf50;
-            --danger: #f44336;
-            --admin-color: #ff0000;
-        }
-
-        .dark-theme {
-            --bg: #1a1a2e;
-            --bg-secondary: #16213e;
-            --text: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --border: #2a2a4a;
-            --message-sent: linear-gradient(135deg, #6c5ce7, #a855f7);
-            --message-received: #2a2a4a;
-            --header-bg: linear-gradient(135deg, #2d1b69, #4a0e78);
-            --input-bg: #2a2a4a;
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            --button-bg: linear-gradient(135deg, #6c5ce7, #a855f7);
-            --tab-active: #a855f7;
-            --tab-inactive: #666;
-            --card-bg: linear-gradient(135deg, #2d1b69, #4a0e78);
-            --success: #4caf50;
-            --danger: #f44336;
-            --admin-color: #ff4444;
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100vh; display: flex; justify-content: center; align-items: center;
         }
 
         .container {
-            width: 100%;
-            max-width: 900px;
-            height: 95vh;
-            min-height: 700px;
+            width: 100%; max-width: 800px; height: 95vh;
+            background: var(--bg); border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
+            display: flex; flex-direction: column;
         }
 
-        .screen {
-            background: var(--bg);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            height: 100%;
+        /* Экраны */
+        #loginScreen, #mainScreen, #registerScreen { display: none; }
+        #loginScreen.active, #mainScreen.active, #registerScreen.active { display: flex; flex-direction: column; height: 100%; }
+        #loginScreen, #registerScreen { justify-content: center; align-items: center; padding: 40px; }
+
+        h1 { color: var(--text); margin-bottom: 10px; font-size: 1.8em; }
+        .subtitle { color: var(--text-secondary); margin-bottom: 20px; }
+
+        input {
+            width: 100%; max-width: 300px; padding: 15px;
+            border: 2px solid var(--border); border-radius: 50px;
+            font-size: 1em; outline: none; margin-bottom: 10px;
+            background: var(--input-bg); color: var(--text);
+        }
+        input:focus { border-color: #667eea; }
+
+        button {
+            width: 100%; max-width: 300px; padding: 15px;
+            border: none; background: var(--button-bg); color: white;
+            font-size: 1em; border-radius: 50px; cursor: pointer;
+            font-weight: bold; margin-bottom: 8px;
+        }
+        button:hover { opacity: 0.9; }
+        button.secondary {
+            background: transparent; border: 2px solid var(--border); color: var(--text);
         }
 
-        .login-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
+        .error-msg { color: #f44336; font-size: 0.85em; margin-bottom: 10px; display: none; }
+        .success-msg { color: #4caf50; font-size: 0.85em; margin-bottom: 10px; display: none; }
 
-        .register-screen {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
-
-        .main-screen {
-            display: none;
-            flex-direction: column;
-        }
-
-        .screen h1 {
-            color: var(--text);
-            margin-bottom: 10px;
-            font-size: 2em;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .developer-badge {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            font-size: 0.9em;
-            font-weight: bold;
-            text-align: center;
-            animation: glow 2s infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
-        }
-
-        .avatar-selection {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .avatar-option {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            font-size: 2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-secondary);
-            transition: all 0.3s;
-        }
-
-        .avatar-option:hover { transform: scale(1.2) rotate(10deg); }
-        .avatar-option.selected {
-            border-color: #667eea;
-            transform: scale(1.15);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-        }
-
-        .input-group {
-            width: 100%;
-            max-width: 300px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid var(--border);
-            border-radius: 50px;
-            font-size: 1em;
-            outline: none;
-            background: var(--input-bg);
-            color: var(--text);
-        }
-
-        .input-group input:focus { border-color: #667eea; box-shadow: 0 0 15px rgba(102, 126, 234, 0.3); }
-        .input-group input.error { border-color: #f44336; animation: shake 0.5s; }
-
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 1.2em;
-            user-select: none;
-            opacity: 0.6;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        .error-message, .success-message {
-            font-size: 0.85em;
-            margin-bottom: 15px;
-            display: none;
-            text-align: center;
-            max-width: 300px;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .error-message { color: #f44336; background: rgba(244, 67, 54, 0.1); }
-        .success-message { color: #4caf50; background: rgba(76, 175, 80, 0.1); }
-        .error-message.show, .success-message.show { display: block; }
-
-        .screen button {
-            width: 100%;
-            max-width: 300px;
-            padding: 15px;
-            border: none;
-            background: var(--button-bg);
-            color: white;
-            font-size: 1em;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 10px;
-            transition: all 0.3s;
-        }
-
-        .screen button:hover { transform: translateY(-3px); }
-        .screen button:active { transform: scale(0.95); }
-        .screen button.secondary { background: transparent; border: 2px solid var(--border); color: var(--text); }
-
-        .char-count {
-            color: var(--text-secondary);
-            font-size: 0.8em;
-            margin-bottom: 5px;
-            text-align: right;
-            max-width: 300px;
-            width: 100%;
-        }
-
+        /* Шапка */
         .top-bar {
-            background: var(--header-bg);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--header-bg); color: white;
+            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .top-bar button {
+            background: rgba(255,255,255,0.2); border: none; color: white;
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; width: auto; margin: 0 0 0 10px;
         }
 
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .admin-prefix {
-            color: var(--admin-color);
-            font-size: 0.7em;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-            animation: glow 2s infinite;
-        }
-
-        .tabs { display: flex; background: var(--bg); border-bottom: 2px solid var(--border); }
+        /* Вкладки */
+        .tabs { display: flex; border-bottom: 2px solid var(--border); }
         .tab {
             flex: 1; padding: 15px; text-align: center; cursor: pointer;
-            font-weight: bold; color: var(--tab-inactive);
-            border-bottom: 3px solid transparent; transition: all 0.3s;
+            font-weight: bold; color: var(--tab-inactive); border-bottom: 3px solid transparent;
         }
-        .tab:hover { color: var(--tab-active); }
         .tab.active { color: var(--tab-active); border-bottom-color: var(--tab-active); }
 
         .tab-content { flex: 1; display: none; flex-direction: column; overflow: hidden; }
         .tab-content.active { display: flex; }
 
+        /* Чат */
         .messages {
             flex: 1; overflow-y: auto; padding: 20px;
             background: var(--bg-secondary); display: flex; flex-direction: column; gap: 10px;
         }
-
         .message {
             max-width: 70%; padding: 12px 18px; border-radius: 20px;
-            word-wrap: break-word; animation: messagePop 0.4s ease-out;
-            display: flex; gap: 10px; align-items: flex-start;
+            word-wrap: break-word; animation: pop 0.3s;
         }
-
-        @keyframes messagePop {
-            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-            70% { transform: scale(1.05); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+        @keyframes pop {
+            from { opacity: 0; transform: scale(0.8) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
+        .message.sent { align-self: flex-end; background: var(--message-sent); color: white; border-bottom-right-radius: 5px; }
+        .message.received { align-self: flex-start; background: var(--message-received); color: var(--text); border-bottom-left-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .message .sender { font-size: 0.8em; font-weight: bold; margin-bottom: 3px; }
+        .message .time { font-size: 0.7em; opacity: 0.7; text-align: right; margin-top: 5px; }
 
-        .message.sent {
-            align-self: flex-end; background: var(--message-sent);
-            color: white; border-bottom-right-radius: 5px; flex-direction: row-reverse;
-        }
+        .input-area { display: flex; padding: 15px; gap: 10px; border-top: 1px solid var(--border); }
+        .input-area input { flex: 1; margin: 0; }
+        .input-area button { width: auto; margin: 0; padding: 12px 24px; }
 
-        .message.received {
-            align-self: flex-start; background: var(--message-received);
-            color: var(--text); border-bottom-left-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .message.admin-message {
-            border: 2px solid #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-        }
-
-        .msg-avatar {
-            width: 35px; height: 35px; border-radius: 50%; font-size: 1.2em;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(102, 126, 234, 0.2); flex-shrink: 0;
-        }
-
-        .input-area {
-            display: flex; padding: 15px; background: var(--bg);
-            border-top: 1px solid var(--border); gap: 10px;
-        }
-
-        .input-area input {
-            flex: 1; padding: 12px 20px; border: 2px solid var(--border);
-            border-radius: 50px; outline: none; background: var(--input-bg); color: var(--text);
-        }
-
-        .input-area button {
-            padding: 12px 24px; border: none; background: var(--button-bg);
-            color: white; border-radius: 50px; cursor: pointer; font-weight: bold;
-        }
-
-        .input-area button:hover { transform: scale(1.05); }
-
+        /* Банк */
         .bank-container { flex: 1; overflow-y: auto; padding: 20px; background: var(--bg-secondary); }
-
         .balance-card {
             background: var(--card-bg); color: white; padding: 30px;
-            border-radius: 20px; margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-radius: 20px; margin-bottom: 20px; text-align: center;
         }
-
-        .balance-card.admin-card {
-            background: linear-gradient(135deg, #1a1a1a, #333333); border: 2px solid #ff0000;
-        }
-
-        .balance-amount { font-size: 3em; font-weight: bold; margin: 10px 0; }
-
+        .balance-card .amount { font-size: 3em; font-weight: bold; }
         .transfer-section {
-            background: var(--bg); padding: 25px; border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg); padding: 20px; border-radius: 15px;
         }
+        .transfer-section input { max-width: 100%; margin-bottom: 15px; }
+        .transfer-section button { max-width: 100%; }
 
-        .form-group input {
-            width: 100%; padding: 12px 15px; border: 2px solid var(--border);
-            border-radius: 10px; font-size: 1em; background: var(--input-bg); color: var(--text); outline: none;
-        }
-
-        .transfer-btn {
-            width: 100%; padding: 15px; border: none; background: var(--button-bg);
-            color: white; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer;
-        }
-
-        .transaction-item {
-            background: var(--bg); padding: 15px; border-radius: 10px;
-            margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
-        }
-
+        /* Админ */
         .admin-panel {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border: 2px solid #ff0000; padding: 20px; border-radius: 15px;
-            margin-bottom: 20px; color: white;
+            background: #1a1a1a; border: 2px solid #ff0000; padding: 20px;
+            border-radius: 15px; margin-bottom: 20px; color: white; display: none;
+        }
+        .admin-panel button {
+            background: rgba(255,0,0,0.2); border: 1px solid #ff0000;
+            color: white; width: auto; margin: 5px; font-size: 0.9em;
         }
 
-        .admin-btn {
-            background: rgba(255, 0, 0, 0.2); border: 1px solid #ff0000;
-            color: white; padding: 10px 15px; border-radius: 10px; cursor: pointer;
-        }
-
+        /* Уведомления */
         .notification {
             position: fixed; top: 20px; right: 20px; background: #4caf50;
             color: white; padding: 15px 25px; border-radius: 10px; z-index: 9999;
-            animation: slideDown 0.5s, fadeOut 0.5s 2.5s forwards;
         }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeOut { to { opacity: 0; transform: translateY(-20px); } }
 
         @media (max-width: 500px) {
-            .container { height: 100vh; max-width: 100%; }
-            .screen { border-radius: 0; }
+            .container { height: 100vh; max-width: 100%; border-radius: 0; }
             .message { max-width: 85%; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="screen login-screen" id="loginScreen">
+    <div class="container" id="app">
+        <!-- Вход -->
+        <div id="loginScreen" class="active">
             <h1>🚀 Golubat Chat</h1>
-            <p style="color: #888; margin-bottom: 10px;">Войдите в аккаунт</p>
-            <div class="developer-badge">👑 Разработчик: MrP1sple</div>
-            <div class="input-group"><input type="text" id="loginNickname" placeholder="Никнейм" maxlength="20" autocomplete="off"></div>
-            <div class="char-count" id="loginCharCount">0/20</div>
-            <div class="input-group"><input type="password" id="loginPassword" placeholder="Пароль" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePass('loginPassword')">👁️</span></div>
-            <div class="error-message" id="loginError"></div>
-            <button onclick="doLogin()">Войти 🔑</button>
-            <button class="secondary" onclick="showReg()">Создать аккаунт ✨</button>
+            <p class="subtitle">Войдите или зарегистрируйтесь</p>
+            <input type="text" id="loginNickname" placeholder="Никнейм" maxlength="20" autocomplete="off">
+            <input type="password" id="loginPassword" placeholder="Пароль" maxlength="20" autocomplete="off">
+            <div class="error-msg" id="loginError"></div>
+            <button onclick="login()">Войти 🔑</button>
+            <button class="secondary" onclick="showRegister()">Создать аккаунт ✨</button>
         </div>
 
-        <div class="screen register-screen" id="registerScreen">
+        <!-- Регистрация -->
+        <div id="registerScreen">
             <h1>✨ Регистрация</h1>
-            <div class="avatar-selection" id="avatarSel">
-                <div class="avatar-option selected" data-avatar="😎">😎</div><div class="avatar-option" data-avatar="🦊">🦊</div><div class="avatar-option" data-avatar="🐱">🐱</div><div class="avatar-option" data-avatar="🐶">🐶</div><div class="avatar-option" data-avatar="🦁">🦁</div><div class="avatar-option" data-avatar="🐼">🐼</div><div class="avatar-option" data-avatar="👽">👽</div><div class="avatar-option" data-avatar="🤖">🤖</div>
+            <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;justify-content:center;" id="avatarSel">
+                <span style="font-size:2em;cursor:pointer;padding:5px;" data-avatar="😎" class="ava selected">😎</span>
+                <span style="font-size:2em;cursor:pointer;padding:5px;" data-avatar="🦊" class="ava">🦊</span>
+                <span style="font-size:2em;cursor:pointer;padding:5px;" data-avatar="🐱" class="ava">🐱</span>
+                <span style="font-size:2em;cursor:pointer;padding:5px;" data-avatar="🐶" class="ava">🐶</span>
+                <span style="font-size:2em;cursor:pointer;padding:5px;" data-avatar="🦁" class="ava">🦁</span>
+                <span style="font-size:2em;cursor:pointer;padding:5px;" data-avatar="🐼" class="ava">🐼</span>
             </div>
-            <div class="input-group"><input type="text" id="regNickname" placeholder="Никнейм" maxlength="20" autocomplete="off"></div>
-            <div class="char-count" id="regCharCount">0/20</div>
-            <div class="input-group"><input type="password" id="regPassword" placeholder="Пароль (мин. 5 цифр)" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePass('regPassword')">👁️</span></div>
-            <div class="input-group"><input type="password" id="regPasswordConfirm" placeholder="Повторите пароль" maxlength="20" autocomplete="off"><span class="password-toggle" onclick="togglePass('regPasswordConfirm')">👁️</span></div>
-            <div class="error-message" id="regError"></div>
-            <div class="success-message" id="regSuccess"></div>
-            <button onclick="doRegister()">Зарегистрироваться 🎉</button>
-            <button class="secondary" onclick="showLoginScreen()">Уже есть аккаунт? Войти</button>
+            <input type="text" id="regNickname" placeholder="Никнейм" maxlength="20" autocomplete="off">
+            <input type="password" id="regPassword" placeholder="Пароль (мин. 5 цифр)" maxlength="20" autocomplete="off">
+            <input type="password" id="regPasswordConfirm" placeholder="Повторите пароль" maxlength="20" autocomplete="off">
+            <div class="error-msg" id="regError"></div>
+            <div class="success-msg" id="regSuccess"></div>
+            <button onclick="register()">Зарегистрироваться 🎉</button>
+            <button class="secondary" onclick="showLogin()">Назад ко входу</button>
         </div>
 
-        <div class="screen main-screen" id="mainScreen">
+        <!-- Чат -->
+        <div id="mainScreen">
             <div class="top-bar">
-                <div style="display:flex;align-items:center;gap:10px;">
-                    <div class="user-avatar" id="userAvatar">😎</div>
-                    <div><span id="userNickname">User</span><span class="admin-prefix" id="adminPrefix" style="display:none;">Г.Л АДМИН</span></div>
-                </div>
-                <div style="display:flex;gap:10px;">
-                    <button onclick="toggleDark()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:20px;cursor:pointer;">🌓</button>
-                    <button onclick="doLogout()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:20px;cursor:pointer;">Выйти</button>
+                <span><b id="userNickname">User</b></span>
+                <div>
+                    <button onclick="logout()">Выйти</button>
                 </div>
             </div>
             <div class="tabs">
                 <div class="tab active" data-tab="chat" onclick="switchTab('chat')">💬 Чат</div>
                 <div class="tab" data-tab="bank" onclick="switchTab('bank')">🏦 Банк</div>
             </div>
-            <div class="tab-content active" id="chatTab">
+            <div class="tab-content active" id="chatContent">
                 <div class="messages" id="messagesContainer"></div>
                 <div class="input-area">
-                    <input type="text" id="messageInput" placeholder="Сообщение..." maxlength="500" onkeypress="if(event.key==='Enter')doSend()" autocomplete="off">
-                    <button onclick="doSend()">Отправить</button>
+                    <input type="text" id="messageInput" placeholder="Сообщение..." maxlength="500" onkeypress="if(event.key==='Enter')sendMessage()" autocomplete="off">
+                    <button onclick="sendMessage()">Отправить</button>
                 </div>
             </div>
-            <div class="tab-content" id="bankTab">
+            <div class="tab-content" id="bankContent">
                 <div class="bank-container">
-                    <div class="balance-card" id="balanceCard">
-                        <div class="balance-label" style="font-size:0.9em;opacity:0.8;">💰 Ваш баланс</div>
-                        <div class="balance-amount" id="balanceDisplay">500 ⭐</div>
-                        <div id="infiniteBadge" style="display:none;background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:20px;font-size:0.8em;margin-top:10px;">♾️ Бесконечный баланс</div>
+                    <div class="balance-card">
+                        <p>💰 Ваш баланс</p>
+                        <div class="amount" id="balanceDisplay">500 ⭐</div>
+                        <p id="infiniteBadge" style="display:none;">♾️ Бесконечный</p>
                     </div>
-                    <div class="admin-panel" id="adminPanel" style="display:none;">
+                    <div class="admin-panel" id="adminPanel">
                         <h3>🔧 Админ панель</h3>
-                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                            <button class="admin-btn" onclick="resetAll()">Сброс балансов</button>
-                            <button class="admin-btn" onclick="doAnnounce()">Объявление</button>
-                            <button class="admin-btn" onclick="giveBonus()">Бонус всем (100⭐)</button>
-                        </div>
+                        <button onclick="resetBalances()">Сброс балансов</button>
+                        <button onclick="announce()">Объявление</button>
+                        <button onclick="giveBonus()">Бонус 100⭐ всем</button>
                     </div>
                     <div class="transfer-section">
-                        <h3>📤 Перевод средств</h3>
-                        <div class="form-group"><label>Кому</label><input type="text" id="transferRecipient" placeholder="Никнейм" autocomplete="off"></div>
-                        <div class="form-group"><label>Сумма</label><input type="number" id="transferAmount" placeholder="Сумма" min="1"></div>
-                        <div class="error-message" id="transferError"></div>
-                        <div class="success-message" id="transferSuccess"></div>
-                        <button class="transfer-btn" onclick="doTransfer()">Отправить 💸</button>
+                        <h3>📤 Перевод</h3>
+                        <input type="text" id="transferRecipient" placeholder="Кому (никнейм)" autocomplete="off">
+                        <input type="number" id="transferAmount" placeholder="Сумма" min="1">
+                        <div class="error-msg" id="transferError"></div>
+                        <div class="success-msg" id="transferSuccess"></div>
+                        <button onclick="makeTransfer()">Отправить 💸</button>
                     </div>
-                    <div style="margin-top:30px;"><h3>📋 История операций</h3></div>
                 </div>
             </div>
         </div>
@@ -477,208 +226,241 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const SUPABASE_URL = 'https://nlrrunpqewtcealfslf.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_aNX07I3_LNzNRx9PoRYSIQ_hYw0Jrd6';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // ========== SUPABASE ==========
+        var SUPABASE_URL = 'https://nlrrunpqewtcealfslf.supabase.co';
+        var SUPABASE_KEY = 'sb_publishable_aNX07I3_LNzNRx9PoRYSIQ_hYw0Jrd6';
+        var supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        const ADMIN_NICKNAME = 'MrP1sple';
-        const ADMIN_PASSWORD = 'admin12345';
-        const bannedWords = ['хуй','пизда','ебать','блядь','сука','fuck','shit','bitch','лох','чмо','ублюдок'];
+        // ========== НАСТРОЙКИ ==========
+        var ADMIN_NICK = 'MrP1sple';
+        var ADMIN_PASS = 'admin12345';
+        var currentUser = null;
+        var currentAvatar = '😎';
+        var isAdmin = false;
+        var accounts = {};
+        var balances = {};
 
-        let currentUser = null, currentAvatar = '😎', isAdmin = false, accounts = {}, userBalances = {};
-
-        function playSound(type) {
-            try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain); gain.connect(ctx.destination); gain.gain.value = 0.1;
-                if(type==='send'){osc.frequency.value=800;osc.type='sine';osc.start();osc.stop(ctx.currentTime+0.15);}
-                else if(type==='receive'){osc.frequency.value=500;osc.type='triangle';osc.start();osc.stop(ctx.currentTime+0.2);}
-                else if(type==='login'){osc.frequency.value=600;osc.type='sine';osc.start();osc.stop(ctx.currentTime+0.4);}
-            }catch(e){}
+        // ========== ЭКРАНЫ ==========
+        function showRegister() {
+            document.getElementById('loginScreen').classList.remove('active');
+            document.getElementById('registerScreen').classList.add('active');
         }
-
-        function notify(text) {
-            const n = document.createElement('div');
-            n.style.cssText='position:fixed;top:20px;right:20px;background:#4caf50;color:white;padding:15px 25px;border-radius:10px;z-index:9999;animation:slideDown 0.5s,fadeOut 0.5s 2.5s forwards;';
-            n.textContent=text;
-            document.body.appendChild(n);
-            setTimeout(()=>n.remove(),3000);
+        function showLogin() {
+            document.getElementById('registerScreen').classList.remove('active');
+            document.getElementById('mainScreen').classList.remove('active');
+            document.getElementById('loginScreen').classList.add('active');
         }
-
-        function togglePass(id){ const i=document.getElementById(id); i.type=i.type==='password'?'text':'password'; }
-        function showReg(){ document.getElementById('loginScreen').style.display='none'; document.getElementById('registerScreen').style.display='flex'; }
-        function showLoginScreen(){ document.getElementById('registerScreen').style.display='none'; document.getElementById('loginScreen').style.display='flex'; }
-        function toggleDark(){ document.body.classList.toggle('dark-theme'); localStorage.setItem('theme',document.body.classList.contains('dark-theme')?'dark':'light'); }
-
-        function switchTab(t){
-            document.querySelectorAll('.tab').forEach(tb=>tb.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-            document.querySelector(`[data-tab="${t}"]`).classList.add('active');
-            document.getElementById(t+'Tab').classList.add('active');
+        function showMain() {
+            document.getElementById('loginScreen').classList.remove('active');
+            document.getElementById('registerScreen').classList.remove('active');
+            document.getElementById('mainScreen').classList.add('active');
+            document.getElementById('userNickname').textContent = currentUser;
+            document.getElementById('adminPanel').style.display = isAdmin ? 'block' : 'none';
+            document.getElementById('infiniteBadge').style.display = isAdmin ? 'block' : 'none';
+            updateBalance();
+            loadMessages();
+            setupRealtime();
+        }
+        function switchTab(t) {
+            document.querySelectorAll('.tab').forEach(function(tb){ tb.classList.remove('active'); });
+            document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
+            document.querySelector('[data-tab="'+t+'"]').classList.add('active');
+            document.getElementById(t+'Content').classList.add('active');
             if(t==='bank') updateBalance();
         }
 
-        function doRegister(){
-            const nick=document.getElementById('regNickname').value.trim();
-            const pass=document.getElementById('regPassword').value;
-            const pass2=document.getElementById('regPasswordConfirm').value;
-            const err=document.getElementById('regError');
-            const suc=document.getElementById('regSuccess');
-            err.classList.remove('show'); suc.classList.remove('show');
-            if(!nick){err.textContent='❌ Введите никнейм!';err.classList.add('show');return;}
-            if(nick.length<2||nick.length>20){err.textContent='❌ Никнейм от 2 до 20 символов!';err.classList.add('show');return;}
-            if(bannedWords.some(w=>nick.toLowerCase().includes(w))){err.textContent='❌ Запрещённый никнейм!';err.classList.add('show');return;}
-            if(nick===ADMIN_NICKNAME){err.textContent='❌ Никнейм зарезервирован!';err.classList.add('show');return;}
-            if(accounts[nick]){err.textContent='❌ Никнейм занят!';err.classList.add('show');return;}
-            if((pass.match(/\d/g)||[]).length<5){err.textContent='❌ Минимум 5 цифр в пароле!';err.classList.add('show');return;}
-            if(pass!==pass2){err.textContent='❌ Пароли не совпадают!';err.classList.add('show');return;}
-            accounts[nick]={password:pass, avatar:currentAvatar};
-            localStorage.setItem('accounts',JSON.stringify(accounts));
-            userBalances[nick]=500;
-            localStorage.setItem('userBalances',JSON.stringify(userBalances));
-            suc.textContent='✅ Аккаунт создан!';
-            suc.classList.add('show');
-            playSound('login');
-            setTimeout(()=>{showLoginScreen();document.getElementById('loginNickname').value=nick;},1500);
+        // ========== РЕГИСТРАЦИЯ ==========
+        function register() {
+            var nick = document.getElementById('regNickname').value.trim();
+            var pass = document.getElementById('regPassword').value;
+            var pass2 = document.getElementById('regPasswordConfirm').value;
+            var errDiv = document.getElementById('regError');
+            var sucDiv = document.getElementById('regSuccess');
+            errDiv.style.display = 'none';
+            sucDiv.style.display = 'none';
+
+            if(!nick){ errDiv.textContent='Введите никнейм!'; errDiv.style.display='block'; return; }
+            if(nick.length<2){ errDiv.textContent='Никнейм от 2 символов!'; errDiv.style.display='block'; return; }
+            if(nick===ADMIN_NICK){ errDiv.textContent='Ник зарезервирован!'; errDiv.style.display='block'; return; }
+            if(accounts[nick]){ errDiv.textContent='Никнейм занят!'; errDiv.style.display='block'; return; }
+            var digits = (pass.match(/\d/g) || []).length;
+            if(digits<5){ errDiv.textContent='Минимум 5 цифр в пароле!'; errDiv.style.display='block'; return; }
+            if(pass!==pass2){ errDiv.textContent='Пароли не совпадают!'; errDiv.style.display='block'; return; }
+
+            accounts[nick] = {password: pass, avatar: currentAvatar};
+            saveAccounts();
+            balances[nick] = 500;
+            saveBalances();
+            sucDiv.textContent = 'Аккаунт создан!';
+            sucDiv.style.display = 'block';
+            document.getElementById('regNickname').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regPasswordConfirm').value = '';
+            setTimeout(function(){ showLogin(); document.getElementById('loginNickname').value = nick; }, 1000);
         }
 
-        function doLogin(){
-            const nick=document.getElementById('loginNickname').value.trim();
-            const pass=document.getElementById('loginPassword').value;
-            const err=document.getElementById('loginError');
-            err.classList.remove('show');
-            if(!nick){err.textContent='❌ Введите никнейм!';err.classList.add('show');return;}
-            if(nick===ADMIN_NICKNAME && pass===ADMIN_PASSWORD){currentUser=ADMIN_NICKNAME;currentAvatar='👑';isAdmin=true;}
-            else if(accounts[nick] && accounts[nick].password===pass){currentUser=nick;currentAvatar=accounts[nick].avatar||'😎';isAdmin=false;}
-            else{err.textContent='❌ Неверный ник или пароль!';err.classList.add('show');return;}
-            localStorage.setItem('nickname',currentUser);
-            localStorage.setItem('password',pass);
-            if(!userBalances[currentUser]){userBalances[currentUser]=isAdmin?Infinity:500;localStorage.setItem('userBalances',JSON.stringify(userBalances));}
-            playSound('login');
-            notify('✅ Вход выполнен!');
+        // ========== ВХОД ==========
+        function login() {
+            var nick = document.getElementById('loginNickname').value.trim();
+            var pass = document.getElementById('loginPassword').value;
+            var errDiv = document.getElementById('loginError');
+            errDiv.style.display = 'none';
+
+            if(!nick){ errDiv.textContent='Введите никнейм!'; errDiv.style.display='block'; return; }
+            if(nick===ADMIN_NICK && pass===ADMIN_PASS){
+                currentUser = ADMIN_NICK; currentAvatar = '👑'; isAdmin = true;
+            } else if(accounts[nick] && accounts[nick].password===pass){
+                currentUser = nick; currentAvatar = accounts[nick].avatar || '😎'; isAdmin = false;
+            } else {
+                errDiv.textContent='Неверный ник или пароль!'; errDiv.style.display='block'; return;
+            }
+            localStorage.setItem('nickname', currentUser);
+            localStorage.setItem('password', pass);
+            if(!balances[currentUser]){ balances[currentUser] = isAdmin ? Infinity : 500; saveBalances(); }
             showMain();
+            notify('Вход выполнен!');
         }
 
-        function showMain(){
-            document.getElementById('loginScreen').style.display='none';
-            document.getElementById('registerScreen').style.display='none';
-            document.getElementById('mainScreen').style.display='flex';
-            document.getElementById('userAvatar').textContent=currentAvatar;
-            document.getElementById('userNickname').textContent=currentUser;
-            const ap=document.getElementById('adminPrefix');
-            if(isAdmin){ap.style.display='block';document.getElementById('userNickname').style.color='#ff0000';}
-            else{ap.style.display='none';document.getElementById('userNickname').style.color='';}
-            document.getElementById('adminPanel').style.display=isAdmin?'block':'none';
-            document.getElementById('infiniteBadge').style.display=isAdmin?'inline-block':'none';
-            document.getElementById('messagesContainer').innerHTML='';
-            updateBalance();
-            loadMsgs();
-            setupRT();
+        function logout() {
+            localStorage.removeItem('nickname');
+            localStorage.removeItem('password');
+            currentUser = null; isAdmin = false;
+            showLogin();
         }
 
-        async function doSend(){
-            const input=document.getElementById('messageInput');
-            const text=input.value.trim();
-            if(!text)return;
-            await supabase.from('messages').insert([{nickname:currentUser,avatar:currentAvatar,text:text,is_admin:isAdmin}]);
-            playSound('send');
-            input.value='';
+        // ========== СООБЩЕНИЯ ==========
+        async function sendMessage() {
+            var input = document.getElementById('messageInput');
+            var text = input.value.trim();
+            if(!text) return;
+            var result = await supabase.from('messages').insert([{
+                nickname: currentUser,
+                avatar: currentAvatar,
+                text: text,
+                is_admin: isAdmin
+            }]);
+            if(result.error) console.error(result.error);
+            input.value = '';
             input.focus();
         }
 
-        function doTransfer(){
-            const rec=document.getElementById('transferRecipient').value.trim();
-            const amt=parseInt(document.getElementById('transferAmount').value);
-            const err=document.getElementById('transferError');
-            const suc=document.getElementById('transferSuccess');
-            err.classList.remove('show');suc.classList.remove('show');
-            if(!rec){err.textContent='❌ Введите никнейм!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
-            if(rec===currentUser){err.textContent='❌ Нельзя себе!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
-            if(!amt||amt<=0){err.textContent='❌ Некорректная сумма!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
-            if(!isAdmin && amt>(userBalances[currentUser]||0)){err.textContent='❌ Недостаточно средств!';err.classList.add('show');setTimeout(()=>err.classList.remove('show'),3000);return;}
-            if(!isAdmin)userBalances[currentUser]-=amt;
-            userBalances[rec]=(userBalances[rec]||0)+amt;
-            localStorage.setItem('userBalances',JSON.stringify(userBalances));
-            suc.textContent=`✅ Отправлено ${amt}⭐ для ${rec}`;
-            suc.classList.add('show');
-            playSound('send');
-            notify(`💰 Отправлено ${amt}⭐`);
-            document.getElementById('transferRecipient').value='';
-            document.getElementById('transferAmount').value='';
-            updateBalance();
-            setTimeout(()=>suc.classList.remove('show'),3000);
-        }
-
-        function resetAll(){if(!isAdmin)return;for(let u in userBalances){if(u!==ADMIN_NICKNAME)userBalances[u]=500;}localStorage.setItem('userBalances',JSON.stringify(userBalances));updateBalance();notify('💰 Балансы сброшены');}
-        function doAnnounce(){if(!isAdmin)return;const a=prompt('Объявление:');if(a){supabase.from('messages').insert([{nickname:'📢',avatar:'📢',text:a,is_admin:true}]);}}
-        function giveBonus(){if(!isAdmin)return;for(let u in userBalances){if(u!==ADMIN_NICKNAME)userBalances[u]+=100;}localStorage.setItem('userBalances',JSON.stringify(userBalances));updateBalance();notify('🎁 Бонус 100⭐ всем!');}
-
-        function doLogout(){
-            localStorage.removeItem('nickname');localStorage.removeItem('password');
-            currentUser=null;isAdmin=false;
-            document.getElementById('mainScreen').style.display='none';
-            document.getElementById('loginScreen').style.display='flex';
-        }
-
-        function displayMsg(msg){
-            const container=document.getElementById('messagesContainer');
-            if(document.querySelector(`[data-id="${msg.id}"]`))return;
-            const isSent=msg.nickname===currentUser;
-            const div=document.createElement('div');
-            div.className='message '+(isSent?'sent':'received');
-            div.setAttribute('data-id',msg.id);
-            if(msg.is_admin)div.classList.add('admin-message');
-            const time=new Date(msg.created_at).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-            const sender=msg.is_admin?`<span style="color:#ff0000;">${msg.nickname} <span style="font-size:0.75em;">[Г.Л АДМИН]</span></span>`:msg.nickname;
-            div.innerHTML=`<div class="msg-avatar">${msg.avatar||'👤'}</div><div><div style="font-weight:bold;margin-bottom:4px;">${sender}</div>${msg.text}<div style="font-size:0.7em;opacity:0.7;text-align:right;margin-top:5px;">${time}</div></div>`;
+        function displayMessage(msg) {
+            var container = document.getElementById('messagesContainer');
+            if(document.querySelector('[data-id="'+msg.id+'"]')) return;
+            var isSent = msg.nickname === currentUser;
+            var div = document.createElement('div');
+            div.className = 'message ' + (isSent ? 'sent' : 'received');
+            div.setAttribute('data-id', msg.id);
+            var time = new Date(msg.created_at).toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+            div.innerHTML = '<div class="sender">'+msg.nickname+'</div>'+msg.text+'<div class="time">'+time+'</div>';
             container.appendChild(div);
-            container.scrollTop=container.scrollHeight;
-            if(!isSent&&msg.nickname!=='📢')playSound('receive');
+            container.scrollTop = container.scrollHeight;
         }
 
-        async function loadMsgs(){
-            const{data}=await supabase.from('messages').select('*').order('created_at',{ascending:true}).limit(100);
-            if(data)data.forEach(m=>displayMsg(m));
+        async function loadMessages() {
+            document.getElementById('messagesContainer').innerHTML = '';
+            var result = await supabase.from('messages').select('*').order('created_at', {ascending: true}).limit(100);
+            if(result.data) result.data.forEach(function(m){ displayMessage(m); });
         }
 
-        function setupRT(){
+        function setupRealtime() {
             supabase.channel('public:messages')
-                .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},(payload)=>displayMsg(payload.new))
+                .on('postgres_changes', {event:'INSERT', schema:'public', table:'messages'}, function(payload){
+                    displayMessage(payload.new);
+                })
                 .subscribe();
         }
 
-        function updateBalance(){
-            document.getElementById('balanceDisplay').textContent=isAdmin?'♾️ ⭐':`${userBalances[currentUser]||0} ⭐`;
-            const card=document.getElementById('balanceCard');
-            if(isAdmin)card.classList.add('admin-card');else card.classList.remove('admin-card');
-            document.getElementById('infiniteBadge').style.display=isAdmin?'inline-block':'none';
+        // ========== ПЕРЕВОДЫ ==========
+        function makeTransfer() {
+            var rec = document.getElementById('transferRecipient').value.trim();
+            var amt = parseInt(document.getElementById('transferAmount').value);
+            var errDiv = document.getElementById('transferError');
+            var sucDiv = document.getElementById('transferSuccess');
+            errDiv.style.display = 'none'; sucDiv.style.display = 'none';
+
+            if(!rec){ errDiv.textContent='Введите никнейм!'; errDiv.style.display='block'; return; }
+            if(rec===currentUser){ errDiv.textContent='Нельзя себе!'; errDiv.style.display='block'; return; }
+            if(!amt||amt<=0){ errDiv.textContent='Некорректная сумма!'; errDiv.style.display='block'; return; }
+            if(!isAdmin && amt>balances[currentUser]){ errDiv.textContent='Недостаточно средств!'; errDiv.style.display='block'; return; }
+
+            if(!isAdmin) balances[currentUser] -= amt;
+            balances[rec] = (balances[rec] || 0) + amt;
+            saveBalances();
+            sucDiv.textContent = 'Отправлено '+amt+'⭐ для '+rec;
+            sucDiv.style.display = 'block';
+            document.getElementById('transferRecipient').value = '';
+            document.getElementById('transferAmount').value = '';
+            updateBalance();
+            notify('Перевод '+amt+'⭐ отправлен!');
+            setTimeout(function(){ sucDiv.style.display = 'none'; }, 3000);
         }
 
-        window.onload=()=>{
-            if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark-theme');
-            const sa=localStorage.getItem('accounts');
-            accounts=sa?JSON.parse(sa):{};
-            if(!accounts[ADMIN_NICKNAME]){accounts[ADMIN_NICKNAME]={password:ADMIN_PASSWORD,avatar:'👑'};localStorage.setItem('accounts',JSON.stringify(accounts));}
-            const sb=localStorage.getItem('userBalances');
-            if(sb)userBalances=JSON.parse(sb);
-            const nn=localStorage.getItem('nickname');
-            const pp=localStorage.getItem('password');
-            if(nn&&pp&&accounts[nn]&&accounts[nn].password===pp){
-                currentUser=nn;currentAvatar=accounts[nn].avatar||'😎';isAdmin=(nn===ADMIN_NICKNAME);
+        function updateBalance() {
+            var bal = balances[currentUser] || 0;
+            document.getElementById('balanceDisplay').textContent = isAdmin ? '♾️ ⭐' : bal + ' ⭐';
+        }
+
+        // ========== АДМИН ==========
+        function resetBalances() {
+            if(!isAdmin) return;
+            for(var u in balances){ if(u!==ADMIN_NICK) balances[u]=500; }
+            saveBalances(); updateBalance(); notify('Балансы сброшены!');
+        }
+        function announce() {
+            if(!isAdmin) return;
+            var a = prompt('Объявление:');
+            if(a) supabase.from('messages').insert([{nickname:'📢 Система', avatar:'📢', text:a, is_admin:true}]);
+        }
+        function giveBonus() {
+            if(!isAdmin) return;
+            for(var u in balances){ if(u!==ADMIN_NICK) balances[u]+=100; }
+            saveBalances(); updateBalance(); notify('Бонус 100⭐ всем!');
+        }
+
+        // ========== УВЕДОМЛЕНИЯ ==========
+        function notify(text) {
+            var n = document.createElement('div');
+            n.className = 'notification';
+            n.textContent = text;
+            document.body.appendChild(n);
+            setTimeout(function(){ n.remove(); }, 3000);
+        }
+
+        // ========== СОХРАНЕНИЕ ==========
+        function saveAccounts(){ localStorage.setItem('accounts', JSON.stringify(accounts)); }
+        function saveBalances(){ localStorage.setItem('balances', JSON.stringify(balances)); }
+
+        // ========== ЗАПУСК ==========
+        window.onload = function() {
+            // Загружаем данные
+            var savedAccounts = localStorage.getItem('accounts');
+            accounts = savedAccounts ? JSON.parse(savedAccounts) : {};
+            if(!accounts[ADMIN_NICK]){ accounts[ADMIN_NICK]={password:ADMIN_PASS, avatar:'👑'}; saveAccounts(); }
+
+            var savedBalances = localStorage.getItem('balances');
+            balances = savedBalances ? JSON.parse(savedBalances) : {};
+
+            // Выбор аватара
+            document.querySelectorAll('#avatarSel .ava').forEach(function(el){
+                el.addEventListener('click', function(){
+                    document.querySelectorAll('#avatarSel .ava').forEach(function(a){ a.classList.remove('selected'); a.style.border='none'; });
+                    this.classList.add('selected');
+                    this.style.border = '3px solid #667eea';
+                    this.style.borderRadius = '10px';
+                    currentAvatar = this.dataset.avatar;
+                });
+            });
+
+            // Автовход
+            var nn = localStorage.getItem('nickname');
+            var pp = localStorage.getItem('password');
+            if(nn && pp && accounts[nn] && accounts[nn].password===pp){
+                currentUser = nn;
+                currentAvatar = accounts[nn].avatar || '😎';
+                isAdmin = (nn === ADMIN_NICK);
                 showMain();
             }
-            document.querySelectorAll('.avatar-option').forEach(o=>o.addEventListener('click',function(){
-                document.querySelectorAll('.avatar-option').forEach(x=>x.classList.remove('selected'));
-                this.classList.add('selected');currentAvatar=this.dataset.avatar;
-            }));
-            document.getElementById('loginNickname').addEventListener('input',()=>{
-                document.getElementById('loginCharCount').textContent=document.getElementById('loginNickname').value.length+'/20';
-            });
-            document.getElementById('regNickname').addEventListener('input',()=>{
-                document.getElementById('regCharCount').textContent=document.getElementById('regNickname').value.length+'/20';
-            });
         };
     </script>
 </body>
